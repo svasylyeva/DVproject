@@ -178,8 +178,7 @@ def line_chart_nationalities():
                   y=['Different nationalities by year', 'Different nationalities until that year'],
                   hover_data={'DateAcquired': False, 'variable': False, 'value': True},
                   color_discrete_sequence=['#9acfbf','#3eceaf'],
-                  labels={'DateAcquired': 'Year Artworks were Acquired', 'variable': '', 'value': 'Number of Nationalities'},
-                  height=350
+                  labels={'DateAcquired': 'Year Artworks were Acquired', 'variable': '', 'value': 'Number of Nationalities'}
                   )
 
     fig.update_layout(
@@ -221,10 +220,8 @@ def map_with_animation():
                         range_color=(0, temp['Countlog'].max()),
                         hover_name='Country',
                         hover_data={'Country':False,'Count':True,'Countlog':False,'DateAcquired':False},
-                        labels={'DateAcquired': 'Year', 'Countlog': 'Acquired<br>Artworks (log)','Count': 'Acquired Artworks'},
-                        #projection="natural earth",
-                        height=590
-                        #, width=710
+                        labels={'DateAcquired': 'Year', 'Countlog': 'Acquired<br>Artworks (log)','Count': 'Acquired Artworks'}
+                        #projection="natural earth"
                         )
     fig.update_layout(
         title=dict(text='Artworks\' Nationality Evolution',
@@ -363,57 +360,51 @@ app = dash.Dash(__name__,
 app.layout = dcc.Loading(
     html.Div(
         children=[
+            # title
+            html.Div(
+                children=[
+                    html.Img(
+                        src=app.get_asset_url("moma-logo.png"),
+                        style={'width': '80%', 'margin-top': '10px'}
+                    ),
+                ],
+            style={'width': '25%'}
+            ),
+            html.Div(
+                children=[
+                    html.H5('The Museum of Modern Art (MoMA) acquired its first artworks in 1929.'
+                            ' Today, the Museum’s evolving collection contains almost 200,000 works'
+                            ' from around the world spanning the last 150 years. In this dashboard, '
+                            'you can go on tour with the MoMA museum by getting insights into which '
+                            'artworks it acquired over the years and by which artists. Next, you can '
+                            'see MoMA per country by checking which country the art pieces come from. '
+                            'The art collections include an ever-expanding range of visual expression, '
+                            'including painting, sculpture, photography, architecture, design, and '
+                            'film art. Travel through time and space with MoMA and enjoy the tour...'),
+                    ],
+                    className='card',
+                    style={"height": "25%","width":"70%"},
+            ),
             #1st row
             html.Div(
                 children=[
                 #1st column
-                html.Div(
-                    children=[
-                    html.Div(
-                        children=[
-                            html.Img(
-                                src=app.get_asset_url("moma-logo.png"),
-                                style={'width': '140%', 'margin-top': '0px'}
-                            ),
-                        ],
-                    style={'width': '25%'}
+                    dcc.Graph(
+                        figure=line_chart_nationalities(),
+                        className='card',
+                        style={"height": "75%"},
                     ),
-                        html.Div(
-                            children=[
-                                html.H5('The Museum of Modern Art (MoMA) acquired its first artworks in 1929.'
-                                        ' Today, the Museum’s evolving collection contains almost 200,000 works'
-                                        ' from around the world spanning the last 150 years. In this dashboard, '
-                                        'you can go on tour with the MoMA museum by getting insights into which '
-                                        'artworks it acquired over the years and by which artists. Next, you can '
-                                        'see MoMA per country by checking which country the art pieces come from. '
-                                        'The art collections include an ever-expanding range of visual expression, '
-                                        'including painting, sculpture, photography, architecture, design, and '
-                                        'film art. Travel through time and space with MoMA and enjoy the tour...'),
-                                ],
-                                className='card',
-                                style={"height": "25%"},
-                        ),
-                        html.Div(
-                            dcc.Graph(
-                                figure=line_chart_nationalities(),
-                                className='card',
-                                style={"height": "60%"},
-                            ),
-                        ),
-                    ],
-                    className='body',
-                    style={'width': '50%'}
-                ),
                 #2nd column
                 html.Div(
                     children=[
                         dcc.Loading([
                                 dcc.Graph(figure=map_with_animation(),
                                           id='main-choropleth')],
-                                type='default', color='black', id="map-loading")
+                                type='default', color='black', id="map-loading"
+                        )
                     ],
                     className='card',
-                    style={'width': '50%', 'margin-bottom': '7px'}
+                    style={'width': '50%'}
                 ),
             ],
             className='container'
@@ -422,6 +413,7 @@ app.layout = dcc.Loading(
         #2nd row
         html.Div(
             children=[
+
                     dcc.Graph(
                         figure=genders_chart(),
                         className='card',

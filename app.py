@@ -392,23 +392,23 @@ app.layout = dcc.Loading(
                     dcc.Graph(
                         figure=line_chart_nationalities(),
                         className='card',
-                        style={"height": "75%"},
+                        style={"width": "50%"},
                     ),
                 #2nd column
-                html.Div(
-                    children=[
-                        dcc.Loading([
-                                dcc.Graph(figure=map_with_animation(),
-                                          id='main-choropleth')],
-                                type='default', color='black', id="map-loading"
-                        )
-                    ],
-                    className='card',
-                    style={'width': '50%'}
-                ),
-            ],
-            className='container'
-        ),
+                    html.Div(
+                        children=[
+                            dcc.Loading([
+                                    dcc.Graph(figure=map_with_animation(),
+                                              id='main-choropleth')],
+                                    type='default', color='black', id="map-loading"
+                            )
+                        ],
+                        className='card',
+                        style={'width': '50%'}
+                    ),
+                ],
+                className='container'
+            ),
 
         #2nd row
         html.Div(

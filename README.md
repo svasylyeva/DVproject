@@ -4,7 +4,7 @@ Project for Data Visualization course in the [Master Degree Program in Data Scie
 ### Authors:
 - Anastasiia Tagiltseva (m20200041@novaims.unl.pt)
 - Beatriz Pereira (m20200674@novaims.unl.pt)
-- Nadine Aldesouky (m20202568@novaims.unl.pt)
+- Nadine Aldesouky (m20200568@novaims.unl.pt)
 - Svitlana Vasylyeva (m20200617@novaims.unl.pt)
 
 ### Professors:
